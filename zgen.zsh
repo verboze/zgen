@@ -1,4 +1,6 @@
 #!/bin/zsh
+
+# TODO: add functionality to auto-remove unused plugin a la Vundle
 autoload -U regexp-replace
 
 local ZGEN_SOURCE="$(cd "$(dirname "${0}")" && pwd -P)"
@@ -446,6 +448,18 @@ zgen-pmodule() {
    fi
 
    -zgen-prezto-load "'${module}'"
+}
+
+zgen-uninstall() {
+  local resp
+  vared -p 'Unload all zsh plugins? All local changes will be lost (y/n): ' -c resp
+
+  if [[ "$resp" =~ [yY] ]]; then
+    rm -rf ${HOME}/{.zgen,.zprezto}
+    rm -rf ${HOME}/.zcompdump*
+    echo "Plugins unloaded. they will be reloaded when .zshrc is sourced next"
+    echo "Update or remove your zshrc if you do not wish to reload modules"
+  fi
 }
 
 zgen() {

@@ -25,6 +25,7 @@ _zgen_commands=(
     "save:check for init.zsh script"
     "selfupdate:update zgen framework from repository"
     "update:update all repositories and remove the init script"
+    "uninstall:remove all plugins and zgen itself"
 )
 
 _describe -t commands "zgen subcommand" _zgen_commands
